@@ -1,6 +1,6 @@
 Huawei App Lock Bruteforcer
 
-Control-F 2020 - 2022
+Control-F 2020 - 2024
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 Author/Contact: mike.bangham@controlf.co.uk
