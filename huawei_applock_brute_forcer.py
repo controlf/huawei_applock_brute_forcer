@@ -76,12 +76,13 @@ def bruteforcer(params_dict, attack_type, wordlist=None):
     if attack_type == 'pin':
         print('Bruteforcing PIN. 0-999999 (1000000 candidates)...')
         while count < 1000000:  # total number of PIN candidates is 999999
-            _hash = derive_hash(f'{count:06}', params_dict['salt'])  # pad count to make 6 digit PIN
+            padded_pin = f'{count:06}'  # # pad count to make 6 digit PIN
+            _hash = derive_hash(padded_pin, params_dict['salt'])
             derived_key = derive_key(_hash, params_dict['iters'], params_dict['master_key'])
             # check if the derived_key matches the first 24 chars of the stored hash
             if hexlify(derived_key).decode()[:24].lower() in params_dict['match'].lower():
                 return ['Cracked',
-                        'PIN: {}'.format(count),
+                        'PIN: {}'.format(padded_pin),
                         'Derived Key: {}'.format(hexlify(derived_key).decode())]  # return PIN and derived key
             progress(round((count / 999999) * 100))
             count += 1
